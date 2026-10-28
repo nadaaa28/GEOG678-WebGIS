@@ -8,4 +8,7 @@
 
 ## Task 2 — Mobile Data Collection
 
-Screenshot of the Damage Assessment web map in ArcGIS Field Maps on an iPhone.
+Screenshot of the Damage Assessment web map in ArcGIS Field Maps on an iPhone.!
+[Field Maps screenshot 1](<WhatsApp Image .jpeg>)
+
+![Field Maps screenshot 2](<WhatsApp Image 2026-10-28 at 6.56.09 AM.jpeg>)
