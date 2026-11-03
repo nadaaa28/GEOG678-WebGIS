@@ -3,4 +3,4 @@
 **Name:** Nandita Ika Qothrunnada
 ## Professional Resume
 
-[View resume source files](resume/)
+[View my resume](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week03/resume/)
