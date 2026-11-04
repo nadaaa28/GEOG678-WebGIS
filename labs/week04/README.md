@@ -31,4 +31,4 @@ This assignment uses JavaScript functions, loops, and conditional statements to 
 
 ## Console Output
 
-![Bounding box results and email address](console-output.png)
+[View console output screenshot](console-output.png)
