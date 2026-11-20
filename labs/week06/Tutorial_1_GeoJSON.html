@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Using GeoJSON with Leaflet</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  >
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1,
+    p {
+      text-align: center;
+    }
+
+    /* Make the map larger and center it */
+    #map {
+      height: 75vh;
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Using GeoJSON with Leaflet</h1>
+
+  <p>
+    Click the map features to see more information.
+  </p>
+
+  <!-- Map container -->
+  <div id="map"></div>
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- GeoJSON sample data from the Leaflet tutorial -->
+  <script src="https://leafletjs.com/examples/geojson/sample-geojson.js"></script>
+
+  <script>
+    // Create the map and center it on Denver
+    const map = L.map('map').setView([39.74739, -105], 13);
+
+    // Add the OpenStreetMap basemap
+    L.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">' +
+          'OpenStreetMap</a> contributors'
+      }
+    ).addTo(map);
+
+    // Add a popup to each feature
+    function onEachFeature(feature, layer) {
+      let content =
+        '<p>I started out as a GeoJSON ' +
+        feature.geometry.type +
+        ', but now I am a Leaflet vector!</p>';
+
+      if (feature.properties && feature.properties.popupContent) {
+        content += feature.properties.popupContent;
+      }
+
+      layer.bindPopup(content);
+    }
+
+    // Check that the sample data loaded successfully
+    if (
+      typeof bicycleRental !== 'undefined' &&
+      typeof campus !== 'undefined' &&
+      typeof freeBus !== 'undefined' &&
+      typeof coorsField !== 'undefined'
+    ) {
+
+      // Add bicycle rental locations and the campus
+      L.geoJSON([bicycleRental, campus], {
+        style: function (feature) {
+          return feature.properties && feature.properties.style;
+        },
+
+        onEachFeature: onEachFeature,
+
+        pointToLayer: function (feature, latlng) {
+          return L.circleMarker(latlng, {
+            radius: 8,
+            fillColor: '#ff7800',
+            color: '#000',
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+          });
+        }
+      }).addTo(map);
+
+      // Add the free bus route
+      L.geoJSON(freeBus, {
+        filter: function (feature) {
+          if (feature.properties) {
+            return feature.properties.underConstruction !== undefined
+              ? !feature.properties.underConstruction
+              : true;
+          }
+
+          return false;
+        },
+
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+      // Create the baseball icon for Coors Field
+      const baseballIcon = L.icon({
+        iconUrl:
+          'https://leafletjs.com/examples/geojson/baseball-marker.png',
+        iconSize: [32, 37],
+        iconAnchor: [16, 37],
+        popupAnchor: [0, -28]
+      });
+
+      // Add Coors Field to the map
+      L.geoJSON(coorsField, {
+        pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {
+            icon: baseballIcon
+          });
+        },
+
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+    } else {
+      // Display a message if the sample data cannot be loaded
+      document.getElementById('map').insertAdjacentHTML(
+        'beforebegin',
+        '<p>GeoJSON data could not load. ' +
+        'Please check your internet connection.</p>'
+      );
+    }
+  </script>
+</body>
+
+</html>
