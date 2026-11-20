@@ -10,7 +10,7 @@ In this lab, I completed three Leaflet tutorials and created an interactive map 
 
 | Map | Script | Map Link | Screenshot |
 | --- | --- | --- | --- |
-| Leaflet Quick Start | [View script](https://github.com/nadaaa28/GEOG678-WebGIS/blob/main/labs/week05/01_Quick_Start.html) | [Open map](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week05/01_Quick_Start.html) | [View screenshot](./01_Quick_Start.png) |
+| Leaflet Quick Start | [View script](https://github.com/nadaaa28/GEOG678-WebGIS/blob/main/labs/week05/01_Quick_Start.html) | [Open map](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week05/01_Quick_Start.html) | [View screenshot](./01_Leaflet_Quick_Start.png) |
 | Leaflet on Mobile | [View script](https://github.com/nadaaa28/GEOG678-WebGIS/blob/main/labs/week05/02_Leaflet_on_Mobile.html) | [Open map](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week05/02_Leaflet_on_Mobile.html) | [View screenshot](./02_Leaflet_on_Mobile.png) |
 | Markers with Custom Icons | [View script](https://github.com/nadaaa28/GEOG678-WebGIS/blob/main/labs/week05/03_Custom_Icons.html) | [Open map](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week05/03_Custom_Icons.html) | [View screenshot](./03_Custom_Icons.png) |
 | Nandita Qothrunnada’s First Web Map | [View script](https://github.com/nadaaa28/GEOG678-WebGIS/blob/main/labs/week05/Custom_Map.html) | [Open map](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week05/Custom_Map.html) | [View screenshot](./Custom_Map.png) |
