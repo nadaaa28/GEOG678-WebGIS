@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nandita Qothrunnada’s First Web Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; height: 100vh; height: 100dvh; display: flex; flex-direction: column; font: 16px system-ui, sans-serif; color: #243742; }
+    header { padding: 12px 18px; border-top: 4px solid #500000; }
+    h1 { margin: 0; font-size: 1.25rem; }
+    p { margin: 4px 0; }
+    #map { flex: 1; min-height: 200px; background: #eef1ef; }
+    button { padding: 6px 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header><h1>Nandita Qothrunnada’s First Web Map</h1><p>Texas A&amp;M University · Select a landmark or click the map for coordinates.</p><button id="campus">Show campus landmarks</button> <span id="status" role="status"></span></header>
+  <div id="map" aria-label="Interactive map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([30.613, -96.34], 16);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(map);
+    function makeIcon(color, symbol) {
+      const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="42" height="50" viewBox="0 0 42 50">' +
+        '<path d="M21 49 Q2 28 2 21 A19 19 0 1 1 40 21 Q40 28 21 49Z" fill="' + color + '" stroke="white" stroke-width="2"/>' +
+        '<text x="21" y="27" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="white">' + symbol + '</text></svg>';
+      return L.icon({ iconUrl: 'data:image/svg+xml,' + encodeURIComponent(svg),
+        iconSize: [42, 50], iconAnchor: [21, 49], popupAnchor: [0, -44] });
+    }
+    const kyleField = [30.6084, -96.3402];
+    const omBuilding = [30.6179, -96.3386];
+    const academicBuilding = [30.6159, -96.3413];
+    const stadium = L.circle(kyleField, { radius: 165, color: '#680d26', fillOpacity: 0.22 })
+      .addTo(map).bindPopup('<b>Kyle Field</b><br>Texas A&amp;M football stadium.');
+    L.marker(omBuilding, { icon: makeIcon('#176879', 'O'), title: 'O&amp;M Building' })
+      .addTo(map).bindPopup('<b>O&amp;M Building</b><br>Eller Oceanography and Meteorology Building.');
+    L.marker(academicBuilding, { icon: makeIcon('#500000', 'A'), title: 'Academic Building' })
+      .addTo(map).bindPopup('<b>Academic Building</b><br>College Station campus.');
+    function showCampus() {
+      map.fitBounds(stadium.getBounds().extend(omBuilding).extend(academicBuilding), { padding: [50, 65] });
+    }
+    document.querySelector('#campus').addEventListener('click', showCampus);
+    showCampus();
+    map.on('click', function (event) {
+      const { lat, lng } = event.latlng;
+      L.popup().setLatLng(event.latlng)
+        .setContent('Latitude: ' + lat.toFixed(5) + '<br>Longitude: ' + lng.toFixed(5))
+        .openOn(map);
+    });
+    map.on('locationfound', function (event) {
+      L.circle(event.latlng, { radius: event.accuracy }).addTo(map);
+      L.marker(event.latlng).addTo(map)
+        .bindPopup('Detected location<br>Accuracy: about ' + Math.round(event.accuracy) + ' m').openPopup();
+      document.querySelector('#status').textContent = 'Location found.';
+    });
+    map.on('locationerror', function () {
+      document.querySelector('#status').textContent = 'Location unavailable. Showing the campus area.';
+    });
+    map.locate({ setView: true, maxZoom: 16 });
+
+  </script>
+</body>
+</html>

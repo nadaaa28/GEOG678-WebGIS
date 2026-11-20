@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leaflet on Mobile</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; height: 100vh; height: 100dvh; display: flex; flex-direction: column; font: 16px system-ui, sans-serif; color: #243742; }
+    header { padding: 12px 18px; border-top: 4px solid #500000; }
+    h1 { margin: 0; font-size: 1.25rem; }
+    p { margin: 4px 0; }
+    #map { flex: 1; min-height: 200px; background: #eef1ef; }
+    button { padding: 6px 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header><h1>Leaflet on Mobile</h1><p>Allow location access to find your position and see its estimated accuracy.</p><span id="status" role="status"></span></header>
+  <div id="map" aria-label="Interactive map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([30.613, -96.34], 15);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(map);
+    map.on('locationfound', function (event) {
+      L.circle(event.latlng, { radius: event.accuracy }).addTo(map);
+      L.marker(event.latlng).addTo(map)
+        .bindPopup('Detected location<br>Accuracy: about ' + Math.round(event.accuracy) + ' m').openPopup();
+      document.querySelector('#status').textContent = 'Location found.';
+    });
+    map.on('locationerror', function () {
+      document.querySelector('#status').textContent = 'Location unavailable. Showing the campus area.';
+    });
+    map.locate({ setView: true, maxZoom: 16 });
+
+  </script>
+</body>
+</html>

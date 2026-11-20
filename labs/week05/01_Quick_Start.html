@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leaflet Quick Start</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; height: 100vh; height: 100dvh; display: flex; flex-direction: column; font: 16px system-ui, sans-serif; color: #243742; }
+    header { padding: 12px 18px; border-top: 4px solid #500000; }
+    h1 { margin: 0; font-size: 1.25rem; }
+    p { margin: 4px 0; }
+    #map { flex: 1; min-height: 200px; background: #eef1ef; }
+    button { padding: 6px 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header><h1>Leaflet Quick Start</h1><p>London · Select a shape or click the map for coordinates.</p><span id="status" role="status"></span></header>
+  <div id="map" aria-label="Interactive map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(map);
+    L.marker([51.5, -0.09]).addTo(map).bindPopup('Hello world!<br>I am a marker.').openPopup();
+    L.circle([51.508, -0.11], { radius: 500, color: 'red', fillColor: '#f03', fillOpacity: 0.5 })
+      .addTo(map).bindPopup('A 500-meter circle.');
+    L.polygon([[51.509, -0.08], [51.503, -0.06], [51.51, -0.047]])
+      .addTo(map).bindPopup('I am a polygon.');
+    map.on('click', function (event) {
+      const { lat, lng } = event.latlng;
+      L.popup().setLatLng(event.latlng)
+        .setContent('Latitude: ' + lat.toFixed(5) + '<br>Longitude: ' + lng.toFixed(5))
+        .openOn(map);
+    });
+
+  </script>
+</body>
+</html>
