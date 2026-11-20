@@ -4,7 +4,7 @@
 
 ## Basic Web Mapping with Leaflet
 
-This lab uses Leaflet to build four interactive web maps. The first three maps explore shapes and popups, browser geolocation, and custom marker icons. The final map applies these techniques to the Texas A&M University campus in College Station.
+In this lab, I completed three Leaflet tutorials and created an interactive map of the Texas A&M University campus in College Station. The tutorials cover shapes and popups, browser geolocation, and custom marker icons. My campus map lets users select a landmark or click the map to see its coordinates.
 
 ## Files
 
