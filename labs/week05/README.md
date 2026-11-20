@@ -8,16 +8,12 @@ In this lab, I completed three Leaflet tutorials and created an interactive map 
 
 ## Files
 
-- [Leaflet Quick Start](./01_Quick_Start.html)
-- [Leaflet on Mobile](./02_Leaflet_on_Mobile.html)
-- [Markers with Custom Icons](./03_Custom_Icons.html)
-- [Nandita Qothrunnada’s First Web Map](./Custom_Map.html)
-
-## How to Run
-
-1. Open the folder containing the four HTML files in Visual Studio Code.
-2. Right-click the HTML file you want to view and select **Open with Live Server**.
-3. For **Leaflet on Mobile**, allow location access to see your estimated position and accuracy.
+| Map | Script | Map Link | Screenshot |
+| --- | --- | --- | --- |
+| Leaflet Quick Start | [View script](https://github.com/nadaaa28/GEOG678-WebGIS/blob/main/labs/week05/01_Quick_Start.html) | [Open map](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week05/01_Quick_Start.html) | [View screenshot](./01_Quick_Start.png) |
+| Leaflet on Mobile | [View script](https://github.com/nadaaa28/GEOG678-WebGIS/blob/main/labs/week05/02_Leaflet_on_Mobile.html) | [Open map](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week05/02_Leaflet_on_Mobile.html) | [View screenshot](./02_Leaflet_on_Mobile.png) |
+| Markers with Custom Icons | [View script](https://github.com/nadaaa28/GEOG678-WebGIS/blob/main/labs/week05/03_Custom_Icons.html) | [Open map](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week05/03_Custom_Icons.html) | [View screenshot](./03_Custom_Icons.png) |
+| Nandita Qothrunnada’s First Web Map | [View script](https://github.com/nadaaa28/GEOG678-WebGIS/blob/main/labs/week05/Custom_Map.html) | [Open map](https://nadaaa28.github.io/GEOG678-WebGIS/labs/week05/Custom_Map.html) | [View screenshot](./Custom_Map.png) |
 
 ## Results
 
