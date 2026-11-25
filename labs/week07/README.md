@@ -1,3 +1,3 @@
-# Lab - Week 07
+## Lab 07: 3D Campus StoryMap
 
-**Name:** Nandita Ika Qothrunnada
+[Explore My TAMU Campus StoryMap](https://arcg.is/1jauaC5)
